@@ -1,0 +1,16 @@
+[Unit]
+Description=Lastheard MQTT Bridge to Domoticz
+After=mmdvm_bridge.service 
+
+[Service]
+ExecStart=python3 /home/einstein/myscript/lh_mqtt_domoticz.py
+WorkingDirectory=/home/einstein/myscript
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+RestartSec=10
+User=einstein
+
+[Install]
+WantedBy=multi-user.target
+
