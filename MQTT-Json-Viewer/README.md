@@ -6,9 +6,9 @@ Basic Usage : <br>
 Use Wio Terminal to see MQTT Data <br>
 <br>
 Extended usage :<br>
-Use Wio Terminal to see lastheard data (DMR) on radioamateur Brandmeister network.<br>
+Use Wio Terminal to see lastheard data (mqtt-json) on radioamateur Brandmeister network.<br>
 -Getting notified when friend is talking on network.<br>
-Use Wio Terminal to see Domoticz data from domoticz/out.<br>
+Use Wio Terminal to see Domoticz data (mqtt-json) from domoticz/out.<br>
 <hr>
 Options during boot:<br>
 -Button A (right):  Escape to ExtFlashLoader Menu<br>
