@@ -4,7 +4,8 @@ Wio Terminal MQTT and Json viewer<br>
 <br>
 Basic Usage : <br>
 Use Wio Terminal to see MQTT Data <br>
-<br>
+<img src="pictures/basic.jpeg" width="300">
+<br><br>
 Extended usage :<br>
 Use Wio Terminal to see lastheard data (mqtt-json) from radioamateur Brandmeister network.(needs monitor and mqttbridge service (added soon))<br>
 -Getting notified when friend is talking on network.<br>
@@ -12,7 +13,8 @@ Use Wio Terminal to see Domoticz data (mqtt-json) from domoticz/out.<br>
 <hr>
 Options during boot:<br>
 -Button A (right):  Escape to ExtFlashLoader Menu<br>
-<br>
+<img src="pictures/start.jpeg" width="300">
+<br><br>
 Options after full start:<br>
 -Button A (right):  Escape to ExtFlash Menu<br>
 -Button B (middle): nothing yet (planned to move domoticz here)<br>
