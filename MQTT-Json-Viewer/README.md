@@ -6,7 +6,7 @@ Basic Usage : <br>
 Use Wio Terminal to see MQTT Data <br>
 <br>
 Extended usage :<br>
-Use Wio Terminal to see lastheard data (mqtt-json) on radioamateur Brandmeister network.<br>
+Use Wio Terminal to see lastheard data (mqtt-json) from radioamateur Brandmeister network.(needs monitor and mqttbridge service (added soon))<br>
 -Getting notified when friend is talking on network.<br>
 Use Wio Terminal to see Domoticz data (mqtt-json) from domoticz/out.<br>
 <hr>
