@@ -1,40 +1,40 @@
 
 /*
-Wio Terminal MQTT Json viewer
- 
-made by Einstein aka PD2EMC (https://einstein.amsterdam)
+  Wio Terminal MQTT Json viewer
 
- Options during boot:
--Button A (right): Escape to ExtFlashLoader Menu
+  made by Einstein aka PD2EMC (https://einstein.amsterdam)
 
-Options after full start:
--Button A (right): Escape to ExtFlash Menu
--Button B (middle): nothing yet (planned to move domoticz here)
--Button C (left): Helppage (press again to exit)
+  Options during boot:
+  -Button A (right): Escape to ExtFlashLoader Menu
 
--Joystick left : Basic MQTT (plain) output (default)
--Joystick up : Nice MQTT output (mqtt contains json output)
--Joystick right: Extended MQTT output (mqtt contains json output)
--Joystick down : Domoticz MQTT output (mqtt contains json output)
+  Options after full start:
+  -Button A (right): Escape to ExtFlash Menu
+  -Button B (middle): nothing yet (planned to move domoticz here)
+  -Button C (left): Helppage (press again to exit)
 
-Thanx to :
+  -Joystick left : Basic MQTT (plain) output (default)
+  -Joystick up : Nice MQTT output (mqtt contains json output)
+  -Joystick right: Extended MQTT output (mqtt contains json output)
+  -Joystick down : Domoticz MQTT output (mqtt contains json output)
 
-Components added to code:
--MQTT example
-https://github.com/salmanfarisvp/Wio-Terminal-MQTT
+  Thanx to :
 
--Json processing (JsonParserExample)
-https://arduinojson.org/v6/example/parser/
+  Components added to code:
+  -MQTT example
+  https://github.com/salmanfarisvp/Wio-Terminal-MQTT
 
--NTP Timeclient (for timestamps and clock)
-https://github.com/arduino-libraries/NTPClient/tree/master/examples/Advanced
+  -Json processing (JsonParserExample)
+  https://arduinojson.org/v6/example/parser/
 
--ExtFlashLoader (for sd menu)
-https://github.com/ciniml/ExtFlashLoader
+  -NTP Timeclient (for timestamps and clock)
+  https://github.com/arduino-libraries/NTPClient/tree/master/examples/Advanced
 
--alot of code found in other samples,on github and google.
+  -ExtFlashLoader (for sd menu)
+  https://github.com/ciniml/ExtFlashLoader
 
-if your name should go here -> tell me. (sorry i forgot you)
+  -alot of code found in other samples,on github and google.
+
+  if your name should go here -> tell me. (sorry i forgot you)
 
 */
 
@@ -63,7 +63,7 @@ NTPClient timeClient(ntpUDP, "europe.pool.ntp.org", 3600, 60000);
 //
 const char* ver_txt = "1.21.02.24";
 const char* author = "PD2EMC";
-int help_delay = 5000;
+//int help_delay = 5000;
 //
 //
 // Update these with values suitable for your network.
@@ -120,22 +120,23 @@ int value = 0;
 
 
 void setup_wifi() {
-
-  Serial.begin(115200);
-  delay(1000);
-  Serial.println();
-  Serial.print("MQTT Viewer by ");
-  Serial.print(author);
-  Serial.print(" ver: ");
-  Serial.println(ver_txt);
+  //serial output
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
-  //
-  //
+  //first screen output
   tft.setTextSize(2);
+  //place header
   header();
-  footer();
+  //place redlines
+  redlines();
+  //place footer content
+  tft.setCursor(10, 220); //fixed position
+  tft.print("By ");
+  tft.print(author);
+  tft.print(" ver. ");
+  tft.print(ver_txt);
+  //wifi begin
   tft.setCursor(5, 30);
   tft.print("Connecting to Wi-Fi ");
   WiFi.begin(ssid, password); // Connecting WiFi
@@ -144,29 +145,22 @@ void setup_wifi() {
     Serial.print(".");
     tft.print(".");
   }
+  //wifi connect serial output
   Serial.println("WiFi connected");
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP()); // Display Local IP Address
   Serial.println("");
-  //
+  //wifi connect tft output
   tft.setCursor(5, 50);
   tft.setTextColor(TFT_GREEN);
   tft.println("-Wifi connected!");
   tft.setTextColor(TFT_WHITE);
-  //delay(1000);
-  //tft.fillScreen(TFT_BLACK);
-  //header();
-  //tft.setCursor(5, 120);
-  //tft.setTextSize(2);
-  //tft.print("waiting for next message");
-  //footer();
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
   //
   //blank middle
   //tft.fillRect(0, 30, 320, 180, TFT_BLACK);//x,y w,h color
-
   Serial.print("Message arrived [");
   Serial.print(topic);
   Serial.print("] ");
@@ -196,7 +190,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     tft.setTextColor(TFT_RED);
     alarm(3);
   }
-  tft.fillRect(0, 30, 320, 180, TFT_BLACK);//x,y w,h color
+  tft.fillRect(0, 30, 320, 212, TFT_BLACK);//x,y w,h color
   //middle section
   //tft.setTextSize(sub_mqtt_size);
   //tft.setCursor((320 - tft.textWidth(msg_p)) / 2, sub_mqtt_loc);
@@ -205,7 +199,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // DMRID json start
   //basic view
   if ((mqtt_json) == 1) { //for dmrid data
-    tft.fillRect(0, 30, 320, 180, TFT_BLACK);//x,y w,h color
+    //tft.fillRect(0, 30, 320, 212, TFT_BLACK);//x,y w,h color
     tft.setTextSize(sub_json_size);
     //
     StaticJsonDocument<344> doc;
@@ -238,7 +232,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     //delay(100);
     //tft.setTextSize(sub_mqtt_size);
     tft.setTextSize(8);
-    tft.fillRect(0, 30, 320, 180, TFT_BLACK);//x,y w,h color
+    //tft.fillRect(0, 30, 320, 212, TFT_BLACK);//x,y w,h color
     tft.setCursor((320 - tft.textWidth(json_callsign)) / 2, 45); //place text in middle
     tft.print(json_callsign); // Print received payload
 
@@ -265,7 +259,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // DMRID json start
   // extended view
   if ((mqtt_json) == 2) { //for dmrid data
-    tft.fillRect(0, 30, 320, 180, TFT_BLACK);//x,y w,h color
+    tft.fillRect(0, 30, 320, 212, TFT_BLACK);//x,y w,h color
     //tft.setCursor(0, (sub_mqtt_loc));
     tft.setTextSize(sub_json_size);
     //msg_p.replace("Domoticz", "Domo");
@@ -336,7 +330,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // Domoticz json start
   //
   else if ((mqtt_json) == 3) {
-    tft.fillRect(0, 30, 320, 180, TFT_BLACK);//x,y w,h color
+    tft.fillRect(0, 30, 320, 212, TFT_BLACK);//x,y w,h color
     //tft.setCursor(0, (sub_mqtt_loc));
     tft.setTextSize(sub_json_size);
     msg_p.replace("Domoticz", "Domo");
@@ -370,7 +364,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     tft.setTextColor(TFT_WHITE);
 
     tft.setTextSize(3);
-    tft.fillRect(0, 30, 320, 180, TFT_BLACK);//x,y w,h color
+    tft.fillRect(0, 30, 320, 212, TFT_BLACK);//x,y w,h color
     tft.setCursor((320 - tft.textWidth(json_name)) / 2, 45); //place text in middle
     tft.print(json_name); // Print received payload
 
@@ -420,7 +414,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   if ((mqtt_json) == 0) {
     //tft.setCursor(30, 100);
     tft.setTextSize(sub_mqtt_size);
-    tft.fillRect(0, 30, 320, 180, TFT_BLACK);//x,y w,h color
+    tft.fillRect(0, 30, 320, 212, TFT_BLACK);//x,y w,h color
     tft.setCursor((320 - tft.textWidth(msg_p)) / 2, sub_mqtt_loc); //place text in middle
     tft.print(msg_p); // Print received payload
     tft.setTextColor(TFT_WHITE);
@@ -442,11 +436,27 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 
   //  tft.print(msg_p); // Print received payload
-
   footer();
+
 
 }
 
+void redline (int x, int y, int z) {
+  //redline
+  tft.drawFastHLine(x, y, z , TFT_RED);
+  tft.drawFastHLine(x, y, z , TFT_RED);
+  tft.drawFastHLine(x, y, z , TFT_RED);
+}
+
+void redlines () {
+  //redlines on screen
+  tft.drawFastHLine(0, 25, 320 , TFT_RED);
+  tft.drawFastHLine(0, 26, 320 , TFT_RED);
+  tft.drawFastHLine(0, 27, 320 , TFT_RED);
+  tft.drawFastHLine(0, 213, 320 , TFT_RED);
+  tft.drawFastHLine(0, 214, 320 , TFT_RED);
+  tft.drawFastHLine(0, 215, 320 , TFT_RED);
+}
 
 void header() {
   // main display header
@@ -469,18 +479,18 @@ void header() {
 void footer() {
   // main display footer
   tft.setTextSize(2);
-  tft.fillRect(0, 212, 320, 28, TFT_BLACK);//x,y w,h color
+  tft.fillRect(0, 216, 320, 24, TFT_BLACK);//x,y w,h color
   ///  tft.setCursor((320 - tft.textWidth(25) / 2, 215); //place text in middle
   //redline
   tft.drawFastHLine(0, 213, 320 , TFT_RED);
   tft.drawFastHLine(0, 214, 320 , TFT_RED);
   tft.drawFastHLine(0, 215, 320 , TFT_RED);
-  tft.setCursor(5, 220);
+  //tft.setCursor(5, 220);
   //tft.setCursor((320 - tft.textWidth(23)) / 2, 200);
   // tft.setFreeFont(FMB12);
   //tft.print("Received messages: ");
   tft.setCursor(5, 220);
-  tft.fillRect(0, 220, 320, 20, TFT_BLACK);
+  // tft.fillRect(0, 220, 320, 20, TFT_BLACK);
 
   tft.print("Messages rec: ");
   tft.print(msg); // Print received message count
@@ -495,10 +505,11 @@ void footer() {
 }
 
 void reconnect() {
-  // Loop until we're reconnected
+  //continue from setup_wifi()
+  //Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Connecting to MQTT...");
-    //    tft.setCursor((320 - tft.textWidth("Attempting MQTT connection")) / 2, 60);
+    //tft.setCursor((320 - tft.textWidth("Attempting MQTT connection")) / 2, 60);
     tft.setCursor(5, 70);
     tft.print("Connecting to MQTT...");
     delay(1000);
@@ -507,7 +518,6 @@ void reconnect() {
     clientId += String(random(0xffff), HEX);
     clientId += "-";
     clientId += (timeClient.getFormattedTime());
-
     // Attempt to connect
     if (client.connect(clientId.c_str())) {
       Serial.println("MQTT connected");
@@ -517,33 +527,30 @@ void reconnect() {
       tft.print("-MQTT connected!");
       tft.setTextColor(TFT_WHITE);
       // Once connected, publish an announcement...
+      // to pub_mqtt f.e.WioTerminal-4c7f-19:25:34 (name-hexid-time)
       tft.setCursor(5, 110);
       tft.println("Publish announcement...");
       delay(1000);
-      client.publish(pub_mqtt, clientId.c_str());//pub_msg+hex string+time
-      //      tft.setCursor((320 - tft.textWidth("publish an announcement")) / 2, 110);
+      client.publish(pub_mqtt, clientId.c_str());
+      //tft.setCursor((320 - tft.textWidth("publish an announcement")) / 2, 110);
       tft.setCursor(5, 130);
       tft.setTextColor(TFT_GREEN);
       tft.println("-Announcement published!");
       tft.setTextColor(TFT_WHITE);
       delay(1000);
-      // ... and resubscribe
+      //subscribe to mqtt listen topic
       tft.setCursor(5, 150);
       tft.println("Subscribe to topic...");
       client.subscribe(sub_mqtt);
-      //tft.setCursor(5, 180);
-      //tft.println(sub_mqtt);
       delay(1000);
       tft.setCursor(5, 170);
       tft.setTextColor(TFT_GREEN);
       tft.println("-Subscribed to topic!");
       tft.setTextColor(TFT_WHITE);
-      //      tft.setCursor((320 - tft.textWidth("waiting for MQTT message")) / 2, 130);
+      //tft.setCursor((320 - tft.textWidth("waiting for MQTT message")) / 2, 130);
       tft.setCursor(5, 190);
       tft.println("Waiting for MQTT messages");
-      //footer();
       delay(1000);
-      //tft.fillScreen(TFT_BLACK);
     }
     else {
       Serial.print("failed, rc=");
@@ -554,7 +561,8 @@ void reconnect() {
     }
   }
 }
-
+//
+//buzzer alarm(3) = 3 beeps
 void alarm(int x) {
   for (int i = 0; i < x; i++) {
     analogWrite(WIO_BUZZER, 150);
@@ -563,7 +571,8 @@ void alarm(int x) {
     delay(80);
   }
 }
-
+//
+//helpscreen activated by left button C
 void helpscreen() {
   //
   //Help screen pulled by left button loop()
@@ -571,13 +580,14 @@ void helpscreen() {
   delay(100);
   tft.fillScreen(TFT_BLACK);
   tft.setTextSize(2);
+  redlines();
   //header
   tft.setCursor((320 - tft.textWidth("- MQTT json Viewer Help -")) / 2, 5);
   tft.print("- MQTT json Viewer Help -");
   //redline
-  tft.drawFastHLine(0, 24, 320 , TFT_RED);
-  tft.drawFastHLine(0, 25, 320 , TFT_RED);
-  tft.drawFastHLine(0, 26, 320 , TFT_RED);
+  //tft.drawFastHLine(0, 24, 320 , TFT_RED);
+  //tft.drawFastHLine(0, 25, 320 , TFT_RED);
+  //tft.drawFastHLine(0, 26, 320 , TFT_RED);
   //menutext
   tft.setCursor(5, 35);
   tft.print("Joystick left/up/right:");
@@ -599,16 +609,16 @@ void helpscreen() {
   tft.setCursor(5, 190);
   tft.print(menu_txt_3);
   //redline
-  tft.drawFastHLine(0, 213, 320 , TFT_RED);
-  tft.drawFastHLine(0, 214, 320 , TFT_RED);
-  tft.drawFastHLine(0, 215, 320 , TFT_RED);
+  //tft.drawFastHLine(0, 213, 320 , TFT_RED);
+  //tft.drawFastHLine(0, 214, 320 , TFT_RED);
+  //tft.drawFastHLine(0, 215, 320 , TFT_RED);
   //footer
   tft.setCursor(10, 220); //fixed position
   tft.print("By ");
   tft.print(author);
   tft.print(" ver. ");
   tft.print(ver_txt);
-  // wait till c is pressed again
+  // wait till c is pressed again and exit to mqtt viewer
   while ( digitalRead(WIO_KEY_C) == HIGH) {
 
   }
@@ -632,14 +642,7 @@ void setup() {
   tft.begin();
   tft.fillScreen(TFT_BLACK);
   tft.setRotation(3);
-  //tft.fillScreen(TFT_BLACK);
-  //helpscreen();
-
-  //
-  //Button sequence
-  //https://github.com/ciniml/ExtFlashLoader
-  //
-  //press right button to escape to menu
+  //wio terminal buttons and buzzer
   pinMode(WIO_BUZZER, OUTPUT); //Set buzzer pin as OUTPUT
   pinMode(WIO_KEY_A, INPUT_PULLUP); //right
   pinMode(WIO_KEY_B, INPUT_PULLUP); //middle
@@ -650,7 +653,13 @@ void setup() {
   pinMode(WIO_5S_LEFT, INPUT_PULLUP);
   pinMode(WIO_5S_RIGHT, INPUT_PULLUP);
   //
-
+  //
+  //default selection of subscription and output
+  mqtt_json = 0; //if output is json/xml = 1
+  sub_mqtt = sub_mqtt_0;//select subscription 0
+  //
+  //
+  // read if button A is pressed during boot for extflashloader
   if ( digitalRead(WIO_KEY_A) == LOW) {//right button
     alarm(3);
     tft.setCursor(5, 120);
@@ -679,8 +688,8 @@ void setup() {
   //mqtt_conn = 0; in header
   //
   // if (mqtt_conn == 0 || mqtt_conn_override == 0) {
-  mqtt_json = 0; //if output is json/xml = 1
-  sub_mqtt = sub_mqtt_0;//select subscription 0
+  //
+
   //  menu_topic = menu_topic_0;
   //tft.setCursor(5, 120);
   //tft.setTextSize(2);
@@ -716,9 +725,17 @@ void setup() {
   //}
   //end server check
 
-  Serial.println();
+  //start serial output
   Serial.begin(115200);
+  Serial.println();
+  delay(1000);
+  Serial.println();
+  Serial.print("MQTT Viewer by ");
+  Serial.print(author);
+  Serial.print(" ver: ");
+  Serial.println(ver_txt);
   setup_wifi();
+  //change topic name to default
   menu_topic = menu_topic_0;
   client.setServer(mqtt_server, 1883); // Connect the MQTT Server
   client.setCallback(callback);
@@ -726,6 +743,7 @@ void setup() {
 
 void loop() {
   timeClient.update();
+  //redlines();
   //
   // tft.fillRect(219, 220, 320, 20, TFT_BLACK);
   // tft.setCursor(220, 220);
