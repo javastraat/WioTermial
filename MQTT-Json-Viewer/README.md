@@ -5,11 +5,12 @@ Booting MQT-Json-Viewer<br>
 <br><br>
 Simple Usage : <br>
 Use Wio Terminal to see MQTT Data <br>
+- our data is made by monitoring mmdvmhost logfile.<br>
 <img src="pictures/simple.jpeg" width="300">
 <br><br>
 Basic usage :<br>
 Use Wio Terminal to see lastheard data (mqtt-json) from radioamateur Brandmeister network.<br>
--(needs monitor and mqttbridge service (added soon))<br>
+-<b>This needs monitor and mqttbridge service and a running MMDVMHost instance (Hotspot, Bridge etc)</b><br>
 -Getting notified when friend is talking on network (text turns red and wio terminal beeps two times).<br>
 <img src="pictures/basic.jpeg" width="300">
 <br><br>
