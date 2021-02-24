@@ -5,12 +5,11 @@ MQTT and Json viewer
 Basic Usage : Use Wio Terminal to see MQTT Data 
 
 Extended usage :
-Use Wio Terminal to see lastheard data (DMR) on radioamateur Brandmeister network.
+Use Wio Terminal to see lastheard data (DMR) on radioamateur Brandmeister network.<br>
 Use Wio Terminal to see Domoticz data from domoticz/out.
 
 <hr>
-
-Components:
+Components added to code:
 -MQTT example
 https://github.com/salmanfarisvp/Wio-Terminal-MQTT
 
@@ -24,9 +23,7 @@ https://github.com/arduino-libraries/NTPClient/tree/master/examples/Advanced
 https://github.com/ciniml/ExtFlashLoader
 
 -alot of code found on github and google
-
---------------------------
-
+<hr>
 Options during boot:
 -Button A (right):  Escape to ExtFlashLoader Menu
 
