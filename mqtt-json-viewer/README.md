@@ -4,7 +4,7 @@
 Install Mosquitto MQTT Broker/Server if not done before.<br>	
 http://www.steves-internet-guide.com/install-mosquitto-linux/<br>	
 <br><br>	
-Booting MQT-Json-Viewer<br>	
+Booting Wio Terminal<br>	
 <img src="images/start.jpeg" width="300">	
 <br><br>	
 Simple display usage : <br>	
