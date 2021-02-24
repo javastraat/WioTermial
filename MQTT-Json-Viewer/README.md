@@ -27,6 +27,7 @@ Options after full start:<br>
 
 
 <hr>
+Thanx to :<br><br>
 Components added to code:<br>
 -MQTT example<br>
 https://github.com/salmanfarisvp/Wio-Terminal-MQTT<br>
