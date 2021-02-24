@@ -3,21 +3,21 @@
 Booting MQT-Json-Viewer<br>
 <img src="pictures/start.jpeg" width="300">
 <br><br>
-Simple Usage : <br>
+Simple display usage : <br>
 Use Wio Terminal to see MQTT Data <br>
 - our data is made by monitoring mmdvmhost logfile.<br>
 <img src="pictures/simple.jpeg" width="300">
 <br><br>
-Basic usage :<br>
+Basic display usage :<br>
 Use Wio Terminal to see lastheard data (mqtt-json) from radioamateur Brandmeister network.<br>
 -<b>This needs monitor and mqttbridge service and a running MMDVMHost instance (Hotspot, Bridge etc)</b><br>
 -Getting notified when friend is talking on network (text turns red and wio terminal beeps two times).<br>
 <img src="pictures/basic.jpeg" width="300">
 <br><br>
-Extended usage (display all data):<br>
+Extended display usage (display all data):<br>
 <img src="pictures/extended.jpeg" width="300"><br>
 <br><br>
-Use Wio Terminal to see Domoticz data (mqtt-json).<br>
+Domoticz data display (mqtt-json).<br>
 -<b>This needs domoticz with mqtt plugin to generate data on domoticz/out</b><br>
 <img src="pictures/domoticz.jpeg" width="300"><br>
 <hr>
