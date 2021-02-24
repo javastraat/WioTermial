@@ -1,6 +1,5 @@
 # Wio Terminal MQTT and Json viewer
 <center>
-Wio Terminal MQTT and Json viewer<br>
 Booting MQT-Json-Viewer<br>
 <img src="pictures/start.jpeg" width="300">
 <br><br>
@@ -9,8 +8,9 @@ Use Wio Terminal to see MQTT Data <br>
 <img src="pictures/simple.jpeg" width="300">
 <br><br>
 Basic usage :<br>
-Use Wio Terminal to see lastheard data (mqtt-json) from radioamateur Brandmeister network.(needs monitor and mqttbridge service (added soon))<br>
--Getting notified when friend is talking on network.<br>
+Use Wio Terminal to see lastheard data (mqtt-json) from radioamateur Brandmeister network.<br>
+-(needs monitor and mqttbridge service (added soon))<br>
+-Getting notified when friend is talking on network (text turns red and wio terminal beeps two times).<br>
 <img src="pictures/basic.jpeg" width="300">
 <br><br>
 Extended usage (display all data):<br>
