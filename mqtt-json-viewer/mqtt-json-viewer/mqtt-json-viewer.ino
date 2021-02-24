@@ -68,8 +68,8 @@ int help_delay = 5000;
 //
 // Update these with values suitable for your network.
 const char* ssid = "einstein.amsterdam"; // WiFi Name
-const char* password = "yourpasswordhere";  // WiFi Password
-const char* mqtt_server = "192.168.2.222";  // MQTT Broker URL
+const char* password = "wifi-password";  // WiFi Password
+const char* mqtt_server = "192.168.x.xxx";  // MQTT Broker URL
 
 int mqtt_conn = 0; //Placeholder 0=sub_mqtt_0,1=sub_mqtt_1 etc etc (topic selection)
 int mqtt_json = 0; //set in server check in setup() - placeholder
