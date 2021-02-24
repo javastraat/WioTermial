@@ -7,8 +7,7 @@ Use Wio Terminal to see MQTT Data <br>
 <br>
 Extended usage :<br>
 Use Wio Terminal to see lastheard data (DMR) on radioamateur Brandmeister network.<br>
-Getting notified when friend is talking on network.<br>
-<br>
+-Getting notified when friend is talking on network.<br>
 Use Wio Terminal to see Domoticz data from domoticz/out.<br>
 <hr>
 Options during boot:<br>
