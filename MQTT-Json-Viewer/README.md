@@ -35,7 +35,7 @@ Options during boot:<br>
 Options after full start:<br>
 -Button A (right):  Escape to ExtFlash Menu<br>
 -Button B (middle): nothing yet (planned to move domoticz here)<br>
--Button C (left):   Helppage<br>
+-Button C (left):   Helppage (press again to exit)<br>
 <br>
 -Joystick left : Basic MQTT (plain) output (default)<br>
 -Joystick up   : Nice MQTT output (mqtt contains json output)<br>
