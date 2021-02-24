@@ -1,5 +1,5 @@
-# WioTermial
-
+# Wio Terminal MQTT and Json viewer
+<center>
 Wio Terminal MQTT and Json viewer<br>
 Booting MQT-Json-Viewer<br>
 <img src="pictures/start.jpeg" width="300">
@@ -20,21 +20,18 @@ Use Wio Terminal to see Domoticz data (mqtt-json) from domoticz/out.<br>
 <img src="pictures/domoticz.jpeg" width="300"><br>
 <hr>
 Options during boot:<br>
--Button A (right):  Escape to ExtFlashLoader Menu<br>
-
+-Button A (right):  Escape to ExtFlashLoader Menu
 <br><br>
 Options after full start:<br>
 -Button A (right):  Escape to ExtFlash Menu<br>
 -Button B (middle): nothing yet (planned to move domoticz here)<br>
--Button C (left):   Helppage (press again to exit)<br>
-<br>
+-Button C (left):   Helppage (press again to exit)
+<br><br>
 -Joystick left : Basic MQTT (plain) output (default)<br>
 -Joystick up   : Nice MQTT output (mqtt contains json output)<br>
 -Joystick right: Extended MQTT output (mqtt contains json output) <br>
--Joystick down : Domoticz MQTT output (mqtt contains json output)  <br>
-<br>
-
-
+-Joystick down : Domoticz MQTT output (mqtt contains json output)
+<br><br>
 <hr>
 Thanx to :<br><br>
 Components added to code:<br>
