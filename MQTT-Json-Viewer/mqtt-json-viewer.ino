@@ -36,7 +36,6 @@
 WiFiUDP ntpUDP;
 //NTPClient timeClient(ntpUDP);
 NTPClient timeClient(ntpUDP, "europe.pool.ntp.org", 3600, 60000);
-
 //
 //
 const char* ver_txt = "1.21.02.24";
