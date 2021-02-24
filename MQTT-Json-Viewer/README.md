@@ -17,7 +17,8 @@ Use Wio Terminal to see lastheard data (mqtt-json) from radioamateur Brandmeiste
 Extended usage (display all data):<br>
 <img src="pictures/extended.jpeg" width="300"><br>
 <br><br>
-Use Wio Terminal to see Domoticz data (mqtt-json) from domoticz/out.<br>
+Use Wio Terminal to see Domoticz data (mqtt-json).<br>
+-<b>This needs domoticz with mqtt plugin to generate data on domoticz/out</b><br>
 <img src="pictures/domoticz.jpeg" width="300"><br>
 <hr>
 Options during boot:<br>
