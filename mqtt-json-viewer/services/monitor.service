@@ -1,0 +1,15 @@
+[Unit]	
+Description=Monitor MMDVMHost and send LastHeard to MQTT	
+After=mmdvm_bridge.service 	
+
+[Service]	
+ExecStart=/home/einstein/myscript/monitor.sh	
+WorkingDirectory=/home/einstein/myscript	
+StandardOutput=inherit	
+StandardError=inherit	
+Restart=always	
+RestartSec=10	
+User=einstein	
+
+[Install]	
+WantedBy=multi-user.target
