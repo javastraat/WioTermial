@@ -1,4 +1,4 @@
-# Wio Terminal MQTT and Json viewer
+# Wio Terminal MQTT Json viewer
 <center>
 Booting MQT-Json-Viewer<br>
 <img src="pictures/start.jpeg" width="300">
