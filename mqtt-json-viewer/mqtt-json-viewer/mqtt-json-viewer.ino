@@ -37,64 +37,68 @@
   if your name should go here -> tell me. (sorry i forgot you)
 
 */
-
+//
+//
 #include <Adafruit_GFX.h>    // Core graphics library
-#include <rpcWiFi.h>
+//
+//include TFT libraries
 #include"TFT_eSPI.h"
-#include <PubSubClient.h>
 #include <SPI.h>
-//include for menu
+//
+//include rpc wifi
+#include <rpcWiFi.h>
+//
+//include mqtt client install from libraries
+#include <PubSubClient.h>
+//
+//include for extflashloader menu
 #include <cstdint>
 #include <ExtFlashLoader.h>
-//include json
-//#include "Free_Fonts.h"
+//
+//include json support
 #include <ArduinoJson.h>
-
 //
 //include ntp client
-//
-#include <NTPClient.h> //https://github.com/arduino-libraries/NTPClient
+#include <NTPClient.h>
 #include <WiFiUdp.h>
 WiFiUDP ntpUDP;
-//NTPClient timeClient(ntpUDP);
 NTPClient timeClient(ntpUDP, "europe.pool.ntp.org", 3600, 60000);
-
 //
-//
+//version and author info on bootscreen
 const char* ver_txt = "1.21.02.24";
 const char* author = "PD2EMC";
-//int help_delay = 5000;
 //
-//
+//wifi ssid & password
 // Update these with values suitable for your network.
 const char* ssid = "einstein.amsterdam"; // WiFi Name
 const char* password = "wifi-password";  // WiFi Password
+//mqtt server ip
 const char* mqtt_server = "192.168.x.xxx";  // MQTT Broker URL
-
-int mqtt_conn = 0; //Placeholder 0=sub_mqtt_0,1=sub_mqtt_1 etc etc (topic selection)
-int mqtt_json = 0; //set in server check in setup() - placeholder
-int mqtt_conn_override = 99; //override
-
 //
-//subscribtions
+//mqtt subscribtion variable
 const char* sub_mqtt = ""; //placeholder
 const char* sub_mqtt_0 = "Home/MMDVMBridge/LastHeard"; //subscribe to topic (default topic) left button
 const char* sub_mqtt_1 = "Home/MMDVMBridge/data"; //subscribe to topic - no json
 const char* sub_mqtt_2 = "domoticz/out"; //subscribe to topic - json
-
+//
+//menu text
 const char* menu_txt   = "Exit to SD menu";
 const char* menu_txt_0 = "Simple/Basic/Extended View";
 const char* menu_txt_1 = "Domoticz MQTT JSON Viewer";
 const char* menu_txt_2 = "Help Menu";
 const char* menu_txt_3   = "Exit to SD menu";
-
+//
+//menu topics
 const char* menu_topic = "Starting MQTT Json Viewer"; //placeholder
 const char* menu_topic_0 = "MMDVM Simple MQTT Viewer";
 const char* menu_topic_1 = "MMDVM Basic MQTT Viewer";
 const char* menu_topic_2 = "MMDVM Extend MQTT Viewer";
 const char* menu_topic_3 = "Domoticz MQTT Json Viewer";
-
-
+//
+//mqtt variables used to select connection and content
+int mqtt_conn = 0; //Placeholder 0=sub_mqtt_0,1=sub_mqtt_1 etc etc (topic selection)
+int mqtt_json = 0; //set in server check in setup() - placeholder
+int mqtt_conn_override = 99; //override
 //
 //Size and location
 int sub_json_size = 2; //size of json output
@@ -102,23 +106,20 @@ int sub_json_loc = 20; //position of json output
 int sub_mqtt_size = 6; //size of normal output
 int sub_mqtt_loc = 100; //position of normal output
 //
-
 //publish alive message
 const char* pub_mqtt = "Home/MMDVMBridge/listener"; //publish in topic
 const char* pub_msg = "WioTerminal-"; // publish text + random hex after boot f.e. "WioTerminal-4c7f"
-
-
-
-
+//define tft
 TFT_eSPI tft;
-
+//define wifi
 WiFiClient wioClient;
+//define pubsub
 PubSubClient client(wioClient);
 long lastMsg = 0;
 char msg[50];
 int value = 0;
-
-
+//
+//
 void setup_wifi() {
   //serial output
   Serial.println();
@@ -156,7 +157,8 @@ void setup_wifi() {
   tft.println("-Wifi connected!");
   tft.setTextColor(TFT_WHITE);
 }
-
+//
+//
 void callback(char* topic, byte* payload, unsigned int length) {
   //
   //blank middle
@@ -440,14 +442,16 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 
 }
-
+//
+//
 void redline (int x, int y, int z) {
   //redline
   tft.drawFastHLine(x, y, z , TFT_RED);
   tft.drawFastHLine(x, y, z , TFT_RED);
   tft.drawFastHLine(x, y, z , TFT_RED);
 }
-
+//
+//
 void redlines () {
   //redlines on screen
   tft.drawFastHLine(0, 25, 320 , TFT_RED);
@@ -457,7 +461,8 @@ void redlines () {
   tft.drawFastHLine(0, 214, 320 , TFT_RED);
   tft.drawFastHLine(0, 215, 320 , TFT_RED);
 }
-
+//
+//
 void header() {
   // main display header
   //
@@ -503,7 +508,8 @@ void footer() {
   Serial.println(timeClient.getFormattedTime());
   tft.setTextColor(TFT_WHITE);
 }
-
+//
+//
 void reconnect() {
   //continue from setup_wifi()
   //Loop until we're reconnected
@@ -574,9 +580,6 @@ void alarm(int x) {
 //
 //helpscreen activated by left button C
 void helpscreen() {
-  //
-  //Help screen pulled by left button loop()
-  //
   delay(100);
   tft.fillScreen(TFT_BLACK);
   tft.setTextSize(2);
@@ -634,9 +637,9 @@ void helpscreen() {
   //tft.fillScreen(TFT_BLACK);
   //
   //end welcome screen
-
 }
-
+//
+//
 void setup() {
   timeClient.begin();
   tft.begin();
@@ -740,17 +743,12 @@ void setup() {
   client.setServer(mqtt_server, 1883); // Connect the MQTT Server
   client.setCallback(callback);
 }
-
+//
+//main loop
 void loop() {
   timeClient.update();
-  //redlines();
-  //
-  // tft.fillRect(219, 220, 320, 20, TFT_BLACK);
-  // tft.setCursor(220, 220);
-  // tft.print(timeClient.getFormattedTime());
   //
   // Button press detector
-  //
   // press top right button to escape to extflash menu
   //
   if ( digitalRead(WIO_KEY_A) == LOW) {//right button
