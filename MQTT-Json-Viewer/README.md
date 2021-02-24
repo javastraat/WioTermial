@@ -1,5 +1,8 @@
 # Wio Terminal MQTT Json viewer
 <center>
+Install Mosquitto MQTT Broker/Server if not done before.<br>
+http://www.steves-internet-guide.com/install-mosquitto-linux/<br>
+<br><br>
 Booting MQT-Json-Viewer<br>
 <img src="pictures/start.jpeg" width="300">
 <br><br>
