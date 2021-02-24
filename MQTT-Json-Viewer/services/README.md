@@ -1,1 +1,1 @@
-#Logfile monitor and MQTTBridge 
+Logfile monitor and MQTTBridge 
