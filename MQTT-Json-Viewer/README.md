@@ -22,17 +22,21 @@ https://github.com/arduino-libraries/NTPClient/tree/master/examples/Advanced
 -ExtFlashLoader (for sd menu)
 https://github.com/ciniml/ExtFlashLoader
 
--alot of code found on github and google
+-alot of code found in other samples,on github and google.<br>
+
+if your name should go here -> tell me. (sorry i forgot you)
 <hr>
-Options during boot:
--Button A (right):  Escape to ExtFlashLoader Menu
+Options during boot:<br>
+-Button A (right):  Escape to ExtFlashLoader Menu<br>
+<br><br>
+Options after full start:<br>
+-Button A (right):  Escape to ExtFlash Menu<br>
+-Button B (middle): nothing yet (planned to move domoticz here)<br>
+-Button C (left):   Helppage<br>
+<br><br>
+-Joystick left : Basic MQTT (plain) output (default)<br>
+-Joystick up   : Nice MQTT output (mqtt contains json output)<br>
+-Joystick right: Extended MQTT output (mqtt contains json output) <br>
+-Joystick down : Domoticz MQTT output (mqtt contains json output)  <br>
+<br><br>
 
-Options after full start:
--Button A (right):  Escape to ExtFlash Menu
--Button B (middle): nothing yet (planned to move domoticz here)
--Button C (left):   Helppage
-
--Joystick left : Basic MQTT (plain) output (default)
--Joystick up   : Nice MQTT output (mqtt contains json output)
--Joystick right: Extended MQTT output (mqtt contains json output) 
--Joystick down : Domoticz MQTT output (mqtt contains json output)  
