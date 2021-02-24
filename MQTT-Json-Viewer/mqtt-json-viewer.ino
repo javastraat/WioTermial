@@ -1,18 +1,40 @@
 
 /*
-   MQTT Exmple for SeeedStudio Wio Terminal
-   Author: Salman Faris
-   Date: 31/07/2020
-   Last Updates: 02/08/2020
+Wio Terminal MQTT Json viewer
+ 
+made by Einstein aka PD2EMC (https://einstein.amsterdam)
 
-   MQTT Broker broker.mqtt-dashboard.com
-   Subscribe Topic Name: WTIn
-   Publish Topic Name: WTout
-  - publishes "hello world" to the topic "WTout"
-  - subscribes to the topic "WTin", printing out any messages
+ Options during boot:
+-Button A (right): Escape to ExtFlashLoader Menu
 
-  NTPClient : https://github.com/arduino-libraries/NTPClient
-  ExtFlash https://github.com/ciniml/ExtFlashLoader
+Options after full start:
+-Button A (right): Escape to ExtFlash Menu
+-Button B (middle): nothing yet (planned to move domoticz here)
+-Button C (left): Helppage (press again to exit)
+
+-Joystick left : Basic MQTT (plain) output (default)
+-Joystick up : Nice MQTT output (mqtt contains json output)
+-Joystick right: Extended MQTT output (mqtt contains json output)
+-Joystick down : Domoticz MQTT output (mqtt contains json output)
+
+Thanx to :
+
+Components added to code:
+-MQTT example
+https://github.com/salmanfarisvp/Wio-Terminal-MQTT
+
+-Json processing (JsonParserExample)
+https://arduinojson.org/v6/example/parser/
+
+-NTP Timeclient (for timestamps and clock)
+https://github.com/arduino-libraries/NTPClient/tree/master/examples/Advanced
+
+-ExtFlashLoader (for sd menu)
+https://github.com/ciniml/ExtFlashLoader
+
+-alot of code found in other samples,on github and google.
+
+if your name should go here -> tell me. (sorry i forgot you)
 
 */
 
@@ -36,6 +58,7 @@
 WiFiUDP ntpUDP;
 //NTPClient timeClient(ntpUDP);
 NTPClient timeClient(ntpUDP, "europe.pool.ntp.org", 3600, 60000);
+
 //
 //
 const char* ver_txt = "1.21.02.24";
@@ -45,8 +68,8 @@ int help_delay = 5000;
 //
 // Update these with values suitable for your network.
 const char* ssid = "einstein.amsterdam"; // WiFi Name
-const char* password = "password";  // WiFi Password
-const char* mqtt_server = "192.168.x.xxx";  // MQTT Broker URL
+const char* password = "password-here";  // WiFi Password
+const char* mqtt_server = "192.168.2.222";  // MQTT Broker URL
 
 int mqtt_conn = 0; //Placeholder 0=sub_mqtt_0,1=sub_mqtt_1 etc etc (topic selection)
 int mqtt_json = 0; //set in server check in setup() - placeholder
