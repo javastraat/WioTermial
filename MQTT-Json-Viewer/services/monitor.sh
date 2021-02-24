@@ -5,7 +5,7 @@ Month=`date +%m`
 Day=`date +%d`
 echo "Current Date is: $Day-$Month-$Year"
 logfile="/var/log/mmdvm/MMDVM_Bridge-$Year-$Month-$Day.log"
-mqtt_server="192.168.2.222"
+mqtt_server="192.168.x.xxx"
 pub_feed="Home/MMDVMBridge/LastHeard"
 if [ -f "$logfile" ]; then
 echo "Logfile found at"
